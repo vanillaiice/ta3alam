@@ -1,0 +1,35 @@
+<div class="flex justify-between gap-1">
+  <%= render "shared/search", url: [ @klass, :teachers ] %>
+</div>
+
+<div class="divider"></div>
+
+<% if @teachers.any? %>
+  <ul>
+    <% @teachers.each_with_index do |teacher, i| %>
+      <li>
+        <%= tag.p teacher.user.name, class: 'text-lg font-semibold' %>
+        <div class="pl-2">
+          <%= mail_to teacher.user.email_address, class: 'opacity-80' %>
+        </div>
+      </li>
+
+      <div class="flex justify-between gap-1 mt-2">
+          <%= btn_link [ @klass, teacher ], "Details", icon: :subject, classes: 'btn-sm' %>
+          <% if policy(teacher).destroy? %>
+            <%= button_to [ @klass, teacher ], method: :delete, data: { turbo_confirm: "Are you sure?" }, class: 'btn btn-error btn-sm' do %>
+              <%= mi "delete", outlined: true %>
+            <% end %>
+          <% end %>
+      </div>
+
+      <%= tag.div class: 'divider mt-0' if i < @teachers.length-1 %>
+    <% end %>
+  </ul>
+
+  <div class="mt-4 flex justify-center">
+    <%= paginate @teachers, window: 2, params: request.query_parameters %>
+  </div>
+<% else %>
+  <span class="opacity-80">No teachers</span>
+<% end %>

@@ -1,0 +1,6 @@
+<%= submission.feedback if submission.feedback? %>
+
+<% if @submission.graded_submission_file.attached? %>
+  <div class="divider"></div>
+  <%= render_content(@submission.graded_submission_file) %>
+<% end %>

@@ -1,0 +1,27 @@
+<%= render "shared/form_container" do %>
+  <%= form_with model: [ @submission ], url: [ :grade, @klass, @submission ], method: :patch do |f| %>
+    <fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
+      <%= f.label :score, "Score (/#{@submission.assignment.max_score})", class: "label", max: @submission.assignment.max_score, min: 0 %>
+      <%= f.number_field :score, class: "input w-full" %>
+
+      <%= f.label :graded_submission_file, "Graded File", class: "label" %>
+      <%= f.file_field :graded_submission_file, class: "file-input w-full", accept: @submission.assignment.accept_content_types&.join(",") %>
+
+      <%= f.label :feedback, "Feedback", class: "label" %>
+      <%= f.rich_text_area :feedback, class: "input w-full" %>
+
+      <% if @submission.errors.any? %>
+        <span class="text-error">error:</span>
+        <ul>
+          <% @submission.errors.full_messages.each do |msg| %>
+            <li class="text-error"><%= msg %></li>
+          <% end %>
+        </ul>
+      <% end %>
+
+      <%= f.submit "Grade", class: "btn btn-primary mt-2" %>
+
+      <%= link_to "Cancel", :back, class: 'btn btn-error mt-2' %>
+    </fieldset>
+  <% end %>
+<% end %>

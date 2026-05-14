@@ -1,0 +1,18 @@
+<% if @grades.any? %>
+  <ul class="w-full"> 
+    <% @grades.each_with_index do |grade, i| %>
+      <li class="flex gap-2 items-center">
+        <%= tag.span grade.assignment.title, class: 'text-secondary text-2xl font-bold' %>
+        <%= tag.p "#{grade.score}/#{grade.assignment.max_score}", class: 'badge badge-secondary badge-lg' %>
+        <%= tag.span "x#{grade.assignment.weight}", class: 'badge badge-lg badge-secondary badge-soft' %>
+        <%= tag.div class: 'divider mt-0' if i < @grades.length-1 %>
+
+        <%= btn_link [ @klass, grade ], "Details", icon: :subject, classes: "btn-sm" %>
+      </li>
+
+      <%= tag.div class: 'divider mt-0' if i < @grades.length-1 %>
+    <% end %>
+  </ul>
+<% else %>
+  <span class="opacity-80">No grades</span>
+<% end %>

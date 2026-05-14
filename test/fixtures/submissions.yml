@@ -1,0 +1,7 @@
+one:
+  assignment: one
+  user: student
+
+two:
+  assignment: two
+  user: student_two

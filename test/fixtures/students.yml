@@ -1,0 +1,11 @@
+one:
+  user: student
+  klass: one
+
+two:
+  user: student_one
+  klass: one
+
+three:
+  user: student_two
+  klass: two

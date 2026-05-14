@@ -1,0 +1,17 @@
+<%= @announcement.content %>
+
+<div class="flex justify-between mt-2 flex-col md:flex-row gap-1">
+  <section>
+    <%= tag.span l(@announcement.created_at, format: :long), class: 'badge badge-neutral badge-soft' %>
+    <%= tag.span @announcement.user.name, class: 'badge badge-secondary badge-soft' %>
+  </section>
+
+  <section class="flex gap-1">
+    <%= btn_link [ :edit, @klass, @announcement ], nil, icon: :edit, classes: 'btn-sm' if !policy(@announcement).edit? %>
+    <% if policy(@announcement).destroy? %>
+      <%= button_to [ @klass, @announcement ], method: :delete, data: { turbo_confirm: "Are you sure?" }, class: 'btn btn-error btn-sm' do %>
+        <%= mi "delete", outlined: true %>
+      <% end %>
+    <% end %>
+  </section>
+</div>

@@ -1,0 +1,7 @@
+one:
+  course: one
+  code: foo
+
+two:
+  course: one
+  code: bar

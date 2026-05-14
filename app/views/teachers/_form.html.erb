@@ -1,0 +1,24 @@
+<%= form_with model: [ klass, teacher ], class: "flex justify-center" do |f| %>
+  <fieldset class="fieldset bg-base-200 border-base-300 rounded-box border p-4 min-w-sm">
+      <%= f.label :teacher, "Teacher" %>
+      <%= f.collection_select :id, 
+        User.where(role: :teacher),
+        :id,
+        :name,
+        { include_hidden: false }, 
+        { class: "select select-bordered w-full" } %>
+
+    <% if teacher.errors.any? %>
+      <span class="text-error">error:</span>
+      <ul>
+        <% teacher.errors.full_messages.each do |msg| %>
+          <li class="text-error"><%= msg %></li>
+        <% end %>
+      </ul>
+    <% end %>
+
+    <%= f.submit "Add teacher", class: "btn btn-neutral mt-2" %>
+
+    <%= link_to "Cancel", :back, class: 'btn btn-error mt-2' %>
+  </fieldset>
+<% end %>

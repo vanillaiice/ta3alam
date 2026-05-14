@@ -1,0 +1,45 @@
+<% grouped = @contents.group_by { |c| c.module_name.presence || "General" } %>
+
+<% if grouped.any? %>
+  <% grouped.each do |module_name, contents| %>
+    <div class="collapse collapse-arrow bg-base-100 border-base-300 border rounded-sm mb-8">
+      <input type="checkbox"  checked />
+      <div class="collapse-title bg-base-200">
+        <h3 class="font-bold text-2xl text-secondary">
+          <%= module_name %>
+        </h3>
+      </div>
+
+      <div class="collapse-content text-sm">
+        <% contents.each_with_index do |content, i| %>
+          <%= tag.p content.title, class: 'text-xl font-semibold mt-2' %>
+          <%= content.description %>
+
+          <div class="flex justify-between mt-2 gap-1 overflow-x-auto">
+            <section class="flex gap-1">
+              <% if content.file.attached? %>
+                <%= tag.a href: url_for(content.file), target: "_blank", rel: "noopener", class: 'btn btn-neutral btn-sm' do %>
+                  <%= mi "download" %>
+                <% end %>
+              <% end %>
+              <%= btn_link [ @klass, content ], "Details", icon: :subject, classes: 'btn btn-sm' %>
+            </section>
+
+            <section class="flex gap-1">
+              <%= btn_link [ :edit, @klass, content ], nil, icon: :edit, classes: 'btn btn-sm' if policy(content).edit? %>
+              <% if policy(content).destroy? %>
+                <%= button_to [ @klass, content ], method: :delete, data: { turbo_confirm: "Are you sure?" }, class: 'btn btn-error btn-sm' do %>
+                  <%= mi "delete", outlined: true %>
+                <% end %>
+              <% end %>
+            </section>
+          </div>
+
+          <%= tag.div class: 'divider m-0' if i < contents.length-1 %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+<% else %>
+  <span class="flex justify-center opacity-80">No Content</span>
+<% end %>

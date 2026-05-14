@@ -1,0 +1,35 @@
+<%= form_with model: [ klass, content ],
+  html: { multipart: true }, class: "flex justify-center" do |f| %>
+  <fieldset class="fieldset bg-base-200 border-base-300 rounded-box border p-4 w-xl">
+    <%= f.label :module_name, "Module", class: "label" %>
+    <%= f.select :module_name,
+      options_for_select(modules, content.module_name),
+      { prompt: "Choose existing module" },
+      class: "select select-bordered w-full" %>
+    <%= f.text_field :new_module_name,
+      placeholder: "Or type new module",
+      class: "input input-bordered w-full" %>
+
+    <%= f.label :file, "File", class: "label" %>
+    <%= f.file_field :file, class: "file-input w-full" %>
+
+    <%= f.label :title, "Title", class: "label" %>
+    <%= f.text_field :title, class: "input w-full" %>
+
+    <%= f.label :description, "Description", class: "label" %>
+    <%= f.rich_text_area :description, class: "textarea w-full" %>
+
+    <% if content.errors.any? %>
+      <span class="text-error">error:</span>
+      <ul>
+        <% content.errors.full_messages.each do |msg| %>
+          <li class="text-error"><%= msg %></li>
+        <% end %>
+      </ul>
+    <% end %>
+
+    <%= tag.btn f.submit, class: "btn btn-neutral mt-2" %>
+
+    <%= link_to "Cancel", :back, class: "btn btn-error mt-2" %>
+  </fieldset>
+<% end %>

@@ -1,0 +1,32 @@
+<h1 class="flex items-center gap-2">
+  <%= tag.span @assignment.title, class: 'text-secondary text-2xl font-bold' %>
+  <%= tag.span "/#{@assignment.max_score}", class: 'badge badge-lg badge-secondary' %>
+  <%= tag.span "x#{@assignment.weight}", class: 'badge badge-lg badge-secondary badge-soft' %>
+  <%= accepted_types_badges(@assignment) %>
+</h1>
+
+<%= @assignment.description %>
+
+<%= format_timestamp(@assignment) %>
+
+<div class="flex justify-between mt-2 flex-col md:flex-row gap-1">
+  <% if @assignment.file.attached? %>
+    <%= tag.a href: url_for(@assignment.file), target: "_blank", rel: "noopener", class: 'btn btn-neutral btn-sm' do %>
+      <%= mi "download" %>
+      <%= tag.span @assignment.file.filename %>
+    <% end %>
+  <% end %>
+
+  <section class="flex gap-1">
+    <%= btn_link [ :edit, @klass, @assignment ], nil, icon: :edit, classes: 'btn-sm'  if policy(@assignment).edit? %>
+    <% if policy(@assignment).destroy? %>
+      <%= button_to [ @klass, @assignment ], method: :delete, data: { turbo_confirm: "Are you sure?" }, class: 'btn btn-error btn-sm' do %>
+        <%= mi "delete", outlined: true %>
+      <% end %>
+    <% end %>
+  </section>
+</div>
+
+<%= tag.div class: 'divider mt-0' if @assignment.file.attached? %>
+
+<%= render_content(@assignment.file) %>

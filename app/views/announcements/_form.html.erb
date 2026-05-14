@@ -1,0 +1,20 @@
+<%= form_with model: [ klass, announcement ],
+  html: { multipart: true }, class: "flex justify-center" do |f| %>
+  <fieldset class="fieldset bg-base-200 border-base-300 rounded-box border p-4 w-xl">
+    <%= f.label :content, "Content", class: "label" %>
+    <%= f.rich_text_area :content, class: "input w-full" %>
+
+    <% if announcement.errors.any? %>
+      <span class="text-error">error:</span>
+      <ul>
+        <% announcement.errors.full_messages.each do |msg| %>
+          <li class="text-error"><%= msg %></li>
+        <% end %>
+      </ul>
+    <% end %>
+
+    <%= tag.btn f.submit, class: "btn btn-neutral mt-2" %>
+
+    <%= link_to "Cancel", :back, class: 'btn btn-error mt-2' %>
+  </fieldset>
+<% end %>

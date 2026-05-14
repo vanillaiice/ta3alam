@@ -1,0 +1,7 @@
+one:
+  klass: one
+  user: teacher
+
+two:
+  klass: two
+  user: teacher_two

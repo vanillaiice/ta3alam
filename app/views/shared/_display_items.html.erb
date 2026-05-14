@@ -1,0 +1,19 @@
+<% if items.any? %>
+  <% items.each_with_index do |item, i| %>
+    <%= yield item %>
+
+    <% if i < items.length - 1 %>
+      <div class="divider mt-0"></div>
+    <% end %>
+  <% end %>
+
+  <% if defined?(paginate) && items.respond_to?(:current_page) %>
+    <div class="flex justify-center mt-4">
+      <%= paginate items, window: 2, params: request.query_parameters %>
+    </div>
+  <% end %>
+<% else %>
+  <div class="p-4 text-center text-gray-500">
+    No Items
+  </div>
+<% end %>

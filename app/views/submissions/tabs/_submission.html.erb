@@ -1,0 +1,6 @@
+<% if submission.notes? %>
+  <%= submission.notes %>
+  <div class="divider"></div>
+<% end %>
+
+<%= render_content(submission.submission_file) %>

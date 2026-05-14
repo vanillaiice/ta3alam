@@ -1,0 +1,34 @@
+<% if @announcements.any? %>
+  <ul>
+    <% @announcements.each_with_index do |announcement, i| %>
+      <li>
+        <%= announcement.content %>
+      </li>
+
+      <div class="flex justify-between gap-1 mt-2 flex-col md:flex-row">
+          <section class="flex gap-1 flex-col md:flex-row items-start md:items-center">
+            <%= tag.span l(announcement.created_at, format: :long), class: 'badge badge-neutral badge-soft' %>
+            <%= tag.span announcement.user.name, class: 'badge badge-secondary badge-soft' %>
+            <%= btn_link [ @klass, announcement ], "Details", icon: :subject, classes: 'btn-sm' %>
+          </section>
+
+          <section class="flex gap-1">
+            <%= btn_link [ :edit, @klass, announcement ], nil, icon: :edit, classes: 'btn-sm' if policy(announcement).edit? %>
+            <% if policy(announcement).destroy? %>
+              <%= button_to [ @klass, announcement ], method: :delete, data: { turbo_confirm: "Are you sure?" }, class: 'btn btn-error btn-sm' do %>
+                <%= mi "delete", outlined: true %>
+              <% end %>
+            <% end %>
+          </section>
+      </div>
+
+      <%= tag.div class: 'divider mt-0' if i < @announcements.length-1 %>
+    <% end %>
+  </ul>
+
+  <div class="mt-4 flex justify-center">
+    <%= paginate @announcements, window: 2, params: request.query_parameters %>
+  </div>
+<% else %>
+  <span class="flex justify-center opacity-80">No Announcements</span>
+<% end %>

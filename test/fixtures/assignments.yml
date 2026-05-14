@@ -1,0 +1,13 @@
+one:
+  klass: one
+  user: teacher
+  title: MyString
+  deadline: 2025-09-14 19:37:59
+  accept_content_types:
+    - text/plain
+
+two:
+  klass: two
+  user: teacher_two
+  title: MyString
+  deadline: 2025-09-14 19:37:59

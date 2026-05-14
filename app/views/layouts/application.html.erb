@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html data-theme="garden">
+  <head>
+    <title><%= content_for(:title) || "Ta3alam" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
+    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
+
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <%# Includes all stylesheet files in app/assets/stylesheets %>
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <div class="flex flex-col">
+      <div class="navbar bg-base-100">
+        <div class="flex-1 px-2">
+          <%= link_to "ta3alam.app", root_path, class: 'link link-hover' %>
+        </div>
+
+        <div class="flex-none">
+          <ul class="menu menu-horizontal px-1 items-center">
+            <% if authenticated? %>
+              <li>
+                <%= link_to "Dashboard", d_root_url %>
+              </li>
+
+              <li>
+                <%= button_to session_path, method: :delete, class: "flex items-center gap-1 hover:cursor-pointer" do %>
+                  Logout
+                  <i class="material-icons-outlined">logout</i>
+                <% end %>
+              </li>
+            <% else %>
+              <li>
+                <%= tag.a href: new_session_path do %>
+                  Login
+                  <i class="material-icons-outlined">login</i>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+
+      <%= yield :navbar_actions %>
+
+      <% unless content_for?(:navbar_actions) %>
+        <div class="border-b border-[var(--color-base-200)]"></div>
+      <% end %>
+    </div>
+
+    <main class="flex flex-col items-center">
+      <%= content_for?(:content) ? yield(:content) : yield %>
+    </main>
+
+    <div
+      class="toast toast-end w-full"
+      data-controller="flash"
+      data-flash-timeout-value="3000"
+      data-action="click->flash#dismiss"
+    >
+      <% if flash[:alert] %>
+        <div class="alert alert-error">
+          <%= tag.span flash[:alert] %>
+        </div>
+      <% end %>
+
+      <% if flash[:notice] %>
+        <div class="alert alert-success">
+          <%= tag.span flash[:notice] %>
+        </div>
+      <% end %>
+    </div>
+  </body>
+</html>

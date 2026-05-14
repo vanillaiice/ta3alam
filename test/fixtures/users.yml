@@ -1,0 +1,49 @@
+<% password_digest = BCrypt::Password.create("password") %>
+
+one:
+  name: one
+  email_address: one@ta3alam.app
+  password_digest: <%= password_digest %>
+  role: owner
+
+owner:
+  name: owner
+  email_address: owner@ta3alam.app
+  password_digest: <%= password_digest %>
+  role: owner
+
+teacher:
+  name: teacher
+  email_address: teacher@ta3alam.app
+  password_digest: <%= password_digest %>
+  role: teacher
+
+teacher_one:
+  name: teacher three
+  email_address: teacher_three@ta3alam.app
+  password_digest: <%= password_digest %>
+  role: teacher
+
+teacher_two:
+  name: teacher two
+  email_address: teacher_two@ta3alam.app
+  password_digest: <%= password_digest %>
+  role: teacher
+
+student:
+  name: student
+  email_address: student@ta3alam.app
+  password_digest: <%= password_digest %>
+  role: student
+
+student_one:
+  name: student one
+  email_address: student_another@ta3alam.app
+  password_digest: <%= password_digest %>
+  role: student
+
+student_two:
+  name: student two
+  email_address: student_two@ta3alam.app
+  password_digest: <%= password_digest %>
+  role: student

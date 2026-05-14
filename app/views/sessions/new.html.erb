@@ -1,0 +1,13 @@
+<%= form_with url: session_path, class: "flex justify-center" do |form| %>
+  <fieldset class="fieldset bg-base-200 border-base-300 rounded-box border p-4 w-xs">
+    <legend class="fieldset-legend text-2xl">Login</legend>
+
+    <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your email address", value: params[:email_address], class: 'input' %><br>
+
+    <%= form.password_field :password, required: true, autocomplete: "current-password", placeholder: "Enter your password", maxlength: 72, class: 'input' %><br>
+
+    <%= form.submit "Sign in", class: 'btn btn-neutral' %>
+
+    <%= link_to "Forgot password?", new_password_path, class: 'label' %>
+  </fieldset>
+<% end %>

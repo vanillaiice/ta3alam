@@ -1,0 +1,31 @@
+<% content_for :navbar_actions do %>
+  <div class="border-b border-[var(--color-base-200)]">
+    <div role="tablist" class="tabs tabs-border">
+      <%= show_if(:owner, :teacher) do %>
+        <%= link_to "Courses",
+          [ :courses ],
+          class: "tab #{'tab-active' if controller_name == 'courses'}",
+          role: "tab" %>
+      <% end %>
+
+      <%= show_if(:owner, :teacher) do %>
+        <%= link_to "Classes",
+          [ :klasses ],
+          class: "tab #{'tab-active' if %w[klasses contents assignments announcements submissions students].include?(controller_name)}",
+          role: "tab" %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<% content_for :content do %>
+  <div class="pb-4 px-4 pt-2 w-full">
+    <%= yield :dashboard_actions %>
+  </div>
+
+  <div class="w-4/6">
+    <%= yield %>
+  </div>
+<% end %>
+
+<%= render template: "layouts/application" %>

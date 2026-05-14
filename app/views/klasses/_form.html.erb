@@ -1,0 +1,19 @@
+<%= form_with model: [ course, klass ], class: "flex justify-center" do |f| %>
+  <fieldset class="fieldset bg-base-200 border-base-300 rounded-box border p-4 min-w-xs">
+    <%= f.label :code, "Code", class: "label" %>
+    <%= f.text_field :code, class: "input w-full" %>
+
+    <% if klass.errors.any? %>
+      <span class="text-error">error:</span>
+      <ul>
+        <% klass.errors.full_messages.each do |msg| %>
+          <li class="text-error"><%= msg %></li>
+        <% end %>
+      </ul>
+    <% end %>
+
+    <%= tag.btn f.submit, class: "btn btn-neutral mt-2" %>
+
+    <%= link_to "Cancel", :back, class: 'btn btn-error mt-2' %>
+  </fieldset>
+<% end %>

@@ -1,0 +1,26 @@
+<%= tag.p @content.title, class: 'text-2xl font-semibold text-secondary' %>
+<%= @content.description %>
+
+<div class="flex justify-between mt-2 flex-col md:flex-row gap-1">
+  <% if @content.file.attached? %>
+    <%= tag.a href: url_for(@content.file), target: "_blank", rel: "noopener", class: 'btn btn-neutral btn-sm' do %>
+      <%= mi "download" %>
+      <%= tag.span @content.file.filename %>
+    <% end %>
+  <% end %>
+
+  <section class="flex gap-1">
+    <%= btn_link [ :edit, @klass, @content ], nil, icon: :edit, classes: 'btn-sm' if policy(@content).edit? %>
+    <% if policy(@content).destroy? %>
+      <%= button_to [ @klass, @content ], method: :delete, data: { turbo_confirm: "Are you sure?" }, class: 'btn btn-error btn-sm' do %>
+        <%= mi "delete", outlined: true %>
+      <% end %>
+    <% end %>
+  </section>
+</div>
+
+<%= tag.div class: 'divider mt-0' if @content.file.attached? %>
+
+<%= tag.span l(@content.created_at, format: :long), class: 'badge badge-neutral badge-soft mb-2' %>
+
+<%= render_content(@content.file) %>
