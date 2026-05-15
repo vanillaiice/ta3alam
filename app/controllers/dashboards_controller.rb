@@ -9,7 +9,7 @@ class DashboardsController < ApplicationController
     when "owner", "teacher"
       redirect_to [ :courses ]
     else
-      redirect_to root_path, alert: "Unauthorized"
+      redirect_to new_session_path, alert: "Unauthorized"
     end
   end
 
