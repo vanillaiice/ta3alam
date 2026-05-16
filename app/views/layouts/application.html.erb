@@ -36,6 +36,12 @@
                 <%= link_to "Dashboard", d_root_url %>
               </li>
 
+              <% if policy(User).index? %>
+                <li>
+                  <%= link_to "Users", users_url %>
+                </li>
+              <% end %>
+
               <li>
                 <%= button_to session_path, method: :delete, class: "flex items-center gap-1 hover:cursor-pointer" do %>
                   Logout
