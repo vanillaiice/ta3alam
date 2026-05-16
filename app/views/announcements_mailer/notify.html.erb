@@ -1,0 +1,11 @@
+<p>Hi <%= @user.name %>,</p>
+
+<p>
+  There's a new announcement in
+  <strong><%= @klass.course.number %> — <%= @klass.code %></strong>
+  from <strong><%= @announcement.user.name %></strong>:
+</p>
+
+<blockquote style="border-left: 3px solid #ccc; padding-left: 1em; color: #555;">
+  <%= @announcement.content %>
+</blockquote>

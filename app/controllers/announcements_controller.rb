@@ -23,6 +23,9 @@ class AnnouncementsController < ApplicationController
     @announcement.user = Current.user
 
     if @announcement.save
+      @klass.students.includes(:user).each do |student|
+        AnnouncementsMailer.notify(student.user, @announcement).deliver_later
+      end
       redirect_to [ @klass, @announcement ], notice: "announcement created", status: :see_other
     else
       render :new, status: :unprocessable_content
