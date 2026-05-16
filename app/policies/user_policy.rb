@@ -5,8 +5,12 @@ class UserPolicy < ApplicationPolicy
     end
   end
 
+  def index?
+    user.owner?
+  end
+
   def new?
-    user.owner? # && user.super?
+    user.owner?
   end
 
   def create?

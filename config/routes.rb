@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   scope "/d" do
     root to: "dashboards#show", as: :d_root
 
+    resources :users, only: %i[index new create]
     resources :klasses, path: "classes"
 
     resources :courses do
