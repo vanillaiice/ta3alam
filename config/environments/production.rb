@@ -65,7 +65,7 @@ Rails.application.configure do
     user_name: Rails.application.credentials.dig(:smtp, :user_name),
     password: Rails.application.credentials.dig(:smtp, :password),
     address: ENV.fetch("SMTP_ADDRESS", "smtp.example.com"),
-    port: 587,
+    port: ENV.fetch("SMTP_PORT", 587),
     authentication: :plain
   }
 
