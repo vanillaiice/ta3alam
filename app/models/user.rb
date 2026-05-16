@@ -12,5 +12,10 @@ class User < ApplicationRecord
   enum :role, { admin: "admin", owner: "owner", teacher: "teacher", student: "student" }
   normalizes :email_address, with: ->(e) { e.strip.downcase }
 
-  validates :email_address, :role, :name, :password, presence: true
+  validates :email_address, :role, :name, :locale, presence: true
+  validates :locale, inclusion: { in: %w[en fr] }
+
+  scope :search, ->(q) {
+    where("name LIKE :q OR email_address LIKE :q", q: "%#{q}%")
+  }
 end

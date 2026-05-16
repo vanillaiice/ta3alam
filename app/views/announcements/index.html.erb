@@ -9,13 +9,13 @@
           <section class="flex gap-1 flex-col md:flex-row items-start md:items-center">
             <%= tag.span l(announcement.created_at, format: :long), class: 'badge badge-neutral badge-soft' %>
             <%= tag.span announcement.user.name, class: 'badge badge-secondary badge-soft' %>
-            <%= btn_link [ @klass, announcement ], "Details", icon: :subject, classes: 'btn-sm' %>
+            <%= btn_link [ @klass, announcement ], t("shared.buttons.details"), icon: :subject, classes: 'btn-sm' %>
           </section>
 
           <section class="flex gap-1">
             <%= btn_link [ :edit, @klass, announcement ], nil, icon: :edit, classes: 'btn-sm' if policy(announcement).edit? %>
             <% if policy(announcement).destroy? %>
-              <%= button_to [ @klass, announcement ], method: :delete, data: { turbo_confirm: "Are you sure?" }, class: 'btn btn-error btn-sm' do %>
+              <%= button_to [ @klass, announcement ], method: :delete, data: { turbo_confirm: t("shared.confirm_delete") }, class: 'btn btn-error btn-sm' do %>
                 <%= mi "delete", outlined: true %>
               <% end %>
             <% end %>
@@ -30,5 +30,5 @@
     <%= paginate @announcements, window: 2, params: request.query_parameters %>
   </div>
 <% else %>
-  <span class="flex justify-center opacity-80">No Announcements</span>
+  <span class="flex justify-center opacity-80"><%= t("announcements.index.no_announcements") %></span>
 <% end %>

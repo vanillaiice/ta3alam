@@ -2,14 +2,14 @@
   <div class="border-b border-[var(--color-base-200)]">
     <div role="tablist" class="tabs tabs-border">
       <%= show_if(:owner, :teacher) do %>
-        <%= link_to "Courses",
+        <%= link_to t("shared.buttons.courses"),
           [ :courses ],
           class: "tab #{'tab-active' if controller_name == 'courses'}",
           role: "tab" %>
       <% end %>
 
       <%= show_if(:owner, :teacher) do %>
-        <%= link_to "Classes",
+        <%= link_to t("shared.buttons.classes"),
           [ :klasses ],
           class: "tab #{'tab-active' if %w[klasses contents assignments announcements submissions students].include?(controller_name)}",
           role: "tab" %>

@@ -12,7 +12,7 @@ def new_fake_text_file(name)
 end
 
 puts "clearing old data..."
-Klass.destroy_all
+Course.destroy_all
 User.destroy_all
 
 puts "creating new data..."

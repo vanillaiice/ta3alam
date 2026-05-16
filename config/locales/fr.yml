@@ -1,0 +1,258 @@
+fr:
+  hello: "Bonjour le monde"
+  time:
+    formats:
+      long: "%e %B %Y %H:%M"
+  date:
+    formats:
+      long: "%e %B %Y"
+  errors:
+    template:
+      header: "Erreur"
+    messages:
+      required: "est obligatoire"
+      blank: "doit être rempli"
+  activerecord:
+    errors:
+      messages:
+        required: "est obligatoire"
+  navbar:
+    dashboard: "Tableau de bord"
+    users: "Utilisateurs"
+    logout: "Déconnexion"
+    login: "Connexion"
+    language: "Langue"
+  views:
+    pagination:
+      first: "&laquo; Premier"
+      last: "Dernier &raquo;"
+      next: "Suivant &rsaquo;"
+      previous: "&lsaquo; Précédent"
+      truncate: "&hellip;"
+  sessions:
+    new:
+      title: "Connexion"
+      email_placeholder: "Entrez votre adresse e-mail"
+      password_placeholder: "Entrez votre mot de passe"
+      submit: "Se connecter"
+      forgot_password: "Mot de passe oublié ?"
+  passwords:
+    new:
+      title: "Mot de passe oublié ?"
+      email_placeholder: "Entrez votre adresse e-mail"
+      submit: "Envoyer l'e-mail de réinitialisation"
+    edit:
+      title: "Définir un nouveau mot de passe"
+      password_placeholder: "Entrez le nouveau mot de passe"
+      password_confirmation_placeholder: "Confirmez le nouveau mot de passe"
+      submit: "Mettre à jour le mot de passe"
+  users:
+    index:
+      title: "Utilisateurs"
+      invite: "Inviter un utilisateur"
+    new:
+      title: "Inviter un nouvel utilisateur"
+      name: "Nom"
+      email: "E-mail"
+      role: "Rôle"
+      select_role: "Sélectionnez un rôle"
+      send_invite: "Envoyer l'invitation"
+      cancel: "Annuler"
+  flash:
+    invited: "%{name} a été invité. Un e-mail de configuration du mot de passe a été envoyé."
+    unauthorized: "Vous n'êtes pas autorisé à effectuer cette action."
+    locale_updated: "Langue mise à jour avec succès."
+  shared:
+    search:
+      placeholder: "Rechercher..."
+      button: "Rechercher"
+    confirm_delete: "Êtes-vous sûr ?"
+    attributes:
+      file: "Fichier"
+    file_types:
+      pdf: "PDF (.pdf)"
+      docx: "Document Word (.docx)"
+      zip: "Archive ZIP (.zip)"
+      image: "Image (.png, .jpg)"
+      text: "Fichier texte (.txt)"
+      audio: "Audio (.mp3, .wav, .ogg)"
+    labels:
+      multi_select_hint: "Maintenez Ctrl pour sélectionner plusieurs types"
+      uploaded: "Mis en ligne"
+      no_items: "Aucun élément"
+    buttons:
+      details: "Détails"
+      courses: "Cours"
+      classes: "Classes"
+      cancel: "Annuler"
+      save: "Enregistrer"
+      edit: "Modifier"
+      delete: "Supprimer"
+      submit: "Soumettre"
+      submissions: "Soumissions"
+      grade: "Noter"
+      contents: "Contenus"
+      assignments: "Devoirs"
+      announcements: "Annonces"
+      grades: "Notes"
+      teachers: "Enseignants"
+      students: "Étudiants"
+  mailers:
+    users:
+      invite:
+        subject: "Vous avez été invité à Ta3alam"
+        hi: "Bonjour %{name},"
+        body_html: "Vous avez été invité à <strong>Ta3alam</strong> en tant que <strong>%{role}</strong>."
+        body_text: "Vous avez été invité à Ta3alam en tant que %{role}."
+        instructions: "Pour commencer, définissez votre mot de passe en utilisant le lien ci-dessous. Ce lien est valide pendant 15 minutes."
+        link_text: "Définissez votre mot de passe"
+        footer: "Si vous n'attendiez pas cette invitation, vous pouvez ignorer cet e-mail en toute sécurité."
+  assignments:
+    attributes:
+      title: "Titre"
+      deadline: "Date limite"
+      max_score: "Score maximum"
+      weight: "Poids"
+      max_attempts: "Tentatives maximum"
+      can_submit_after_deadline: "Peut soumettre après la date limite"
+      accept_content_types: "Types de fichiers acceptés"
+    index:
+      title: "Devoirs"
+      new: "Nouveau devoir"
+      submission_count: "%{count} soumissions"
+      no_assignments: "Aucun devoir"
+    show:
+      title: "Détails du devoir"
+    edit:
+      title: "Modifier le devoir"
+    new:
+      title: "Nouveau devoir"
+    status:
+      due: "Échéance : %{date}"
+      no_deadline: "Pas de date limite"
+  submissions:
+    attributes:
+      content: "Réponse"
+      files: "Fichiers"
+      grade: "Note"
+      feedback: "Commentaires"
+      status: "Statut"
+      submitted_at: "Soumis le"
+      submission_file: "Fichier (Télécharger ou Enregistrer)"
+      notes: "Notes"
+      graded_submission_file: "Fichier noté"
+    index:
+      title: "Soumissions"
+      no_submissions: "Aucune soumission pour le moment"
+      submissions_for: "Soumissions pour %{title}"
+    show:
+      title: "Détails de la soumission"
+    grade_view:
+      title: "Noter la soumission"
+      submit: "Enregistrer la note"
+    new:
+      title: "Nouvelle soumission"
+      recorder:
+        start: "Démarrer l'enregistrement"
+        stop: "Arrêter l'enregistrement"
+        rerecord: "Réenregistrer"
+        recording: "Enregistrement..."
+        attached: "Enregistrement joint."
+        error: "Accès au microphone refusé ou non disponible."
+    status:
+      pending: "En attente"
+      graded: "Noté"
+      not_graded: "Non noté"
+  teachers:
+    attributes:
+      user: "Enseignant"
+    index:
+      title: "Enseignants"
+      new: "Ajouter un enseignant"
+      no_teachers: "Aucun enseignant"
+    show:
+      title: "Détails de l'enseignant"
+    new:
+      title: "Ajouter un enseignant à la classe"
+    labels:
+      select_teacher: "Sélectionnez un enseignant"
+  students:
+    attributes:
+      user: "Étudiant"
+    index:
+      title: "Étudiants"
+      new: "Ajouter un étudiant"
+      no_students: "Aucun étudiant"
+    show:
+      title: "Détails de l'étudiant"
+    new:
+      title: "Ajouter un étudiant à la classe"
+      submit: "Ajouter l'étudiant"
+    labels:
+      select_student: "Sélectionnez un étudiant"
+  klasses:
+    attributes:
+      code: "Code"
+    index:
+      title: "Classes"
+      new: "Nouvelle classe"
+      class_label: "Classe %{code}"
+    show:
+      title: "Détails de la classe"
+    edit:
+      title: "Modifier la classe"
+    new:
+      title: "Nouvelle classe"
+  courses:
+    attributes:
+      name: "Nom"
+      number: "Numéro"
+      description: "Description"
+    index:
+      title: "Cours"
+      new: "Nouveau cours"
+    show:
+      title: "Détails du cours"
+    edit:
+      title: "Modifier le cours"
+    new:
+      title: "Nouveau cours"
+    announcements:
+      notify:
+        subject: "[%{course} - %{code}] Nouvelle annonce"
+        hi: "Bonjour %{name},"
+        body: "Il y a une nouvelle annonce dans <strong>%{course} — %{code}</strong> de la part de <strong>%{author}</strong> :"
+        body_text: "Il y a une nouvelle annonce dans %{course} — %{code} de la part de %{author}"
+  grades:
+    index:
+      title: "Notes"
+      no_grades: "Aucune note disponible"
+  contents:
+    attributes:
+      title: "Titre"
+      body: "Contenu"
+      file: "Pièce jointe"
+    index:
+      title: "Supports de cours"
+      new: "Nouveau contenu"
+      no_contents: "Aucun contenu disponible"
+      module_general: "Général"
+    show:
+      title: "Détails du contenu"
+    edit:
+      title: "Modifier le contenu"
+    new:
+      title: "Nouveau contenu"
+  announcements:
+    attributes:
+      content: "Message"
+    index:
+      title: "Annonces"
+      new: "Nouvelle annonce"
+      no_announcements: "Aucune annonce"
+    show:
+      title: "Détails de l'annonce"
+    edit:
+      title: "Modifier l'annonce"
+    new:
+      title: "Nouvelle annonce"

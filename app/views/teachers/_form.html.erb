@@ -1,15 +1,15 @@
 <%= form_with model: [ klass, teacher ], class: "flex justify-center" do |f| %>
   <fieldset class="fieldset bg-base-200 border-base-300 rounded-box border p-4 min-w-sm">
-      <%= f.label :teacher, "Teacher" %>
+      <%= f.label :teacher, t("teachers.attributes.user") %>
       <%= f.collection_select :id, 
         User.where(role: :teacher),
         :id,
         :name,
-        { include_hidden: false }, 
+        { include_hidden: false, prompt: t("teachers.labels.select_teacher") }, 
         { class: "select select-bordered w-full" } %>
 
     <% if teacher.errors.any? %>
-      <span class="text-error">error:</span>
+      <span class="text-error"><%= t("errors.template.header", count: teacher.errors.count) %>:</span>
       <ul>
         <% teacher.errors.full_messages.each do |msg| %>
           <li class="text-error"><%= msg %></li>
@@ -17,8 +17,8 @@
       </ul>
     <% end %>
 
-    <%= f.submit "Add teacher", class: "btn btn-neutral mt-2" %>
+    <%= f.submit t("teachers.index.new"), class: "btn btn-neutral mt-2" %>
 
-    <%= link_to "Cancel", :back, class: 'btn btn-error mt-2' %>
+    <%= link_to t("shared.buttons.cancel"), :back, class: 'btn btn-error mt-2' %>
   </fieldset>
 <% end %>

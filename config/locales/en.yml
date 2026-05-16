@@ -1,31 +1,258 @@
-# Files in the config/locales directory are used for internationalization and
-# are automatically loaded by Rails. If you want to use locales other than
-# English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t "hello"
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t("hello") %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more about the API, please read the Rails Internationalization guide
-# at https://guides.rubyonrails.org/i18n.html.
-#
-# Be aware that YAML interprets the following case-insensitive strings as
-# booleans: `true`, `false`, `on`, `off`, `yes`, `no`. Therefore, these strings
-# must be quoted to be interpreted as strings. For example:
-#
-#     en:
-#       "yes": yup
-#       enabled: "ON"
-
 en:
   hello: "Hello world"
+  time:
+    formats:
+      long: "%B %d, %Y %H:%M"
+  date:
+    formats:
+      long: "%B %d, %Y"
+  errors:
+    template:
+      header: "Error"
+    messages:
+      required: "is required"
+      blank: "can't be blank"
+  activerecord:
+    errors:
+      messages:
+        required: "must be provided"
+  navbar:
+    dashboard: "Dashboard"
+    users: "Users"
+    logout: "Logout"
+    login: "Login"
+    language: "Language"
+  views:
+    pagination:
+      first: "&laquo; First"
+      last: "Last &raquo;"
+      next: "Next &rsaquo;"
+      previous: "&lsaquo; Prev"
+      truncate: "&hellip;"
+  sessions:
+    new:
+      title: "Login"
+      email_placeholder: "Enter your email address"
+      password_placeholder: "Enter your password"
+      submit: "Sign in"
+      forgot_password: "Forgot password?"
+  passwords:
+    new:
+      title: "Forgot password?"
+      email_placeholder: "Enter your email address"
+      submit: "Send password reset email"
+    edit:
+      title: "Set new password"
+      password_placeholder: "Enter new password"
+      password_confirmation_placeholder: "Confirm new password"
+      submit: "Update password"
+  users:
+    index:
+      title: "Users"
+      invite: "Invite User"
+    new:
+      title: "Invite New User"
+      name: "Name"
+      email: "Email"
+      role: "Role"
+      select_role: "Select a role"
+      send_invite: "Send Invite"
+      cancel: "Cancel"
+  flash:
+    invited: "%{name} has been invited. A password setup email has been sent."
+    unauthorized: "You are not authorized to perform this action."
+    locale_updated: "Language updated successfully."
+  shared:
+    search:
+      placeholder: "Search..."
+      button: "Search"
+    confirm_delete: "Are you sure?"
+    attributes:
+      file: "File"
+    file_types:
+      pdf: "PDF (.pdf)"
+      docx: "Word Document (.docx)"
+      zip: "ZIP Archive (.zip)"
+      image: "Image (.png, .jpg)"
+      text: "Text File (.txt)"
+      audio: "Audio (.mp3, .wav, .ogg)"
+    labels:
+      multi_select_hint: "Hold Ctrl to select multiple types"
+      uploaded: "Uploaded"
+      no_items: "No Items"
+    buttons:
+      details: "Details"
+      courses: "Courses"
+      classes: "Classes"
+      cancel: "Cancel"
+      save: "Save"
+      edit: "Edit"
+      delete: "Delete"
+      submit: "Submit"
+      submissions: "Submissions"
+      grade: "Grade"
+      contents: "Contents"
+      assignments: "Assignments"
+      announcements: "Announcements"
+      grades: "Grades"
+      teachers: "Teachers"
+      students: "Students"
+  mailers:
+    users:
+      invite:
+        subject: "You've been invited to Ta3alam"
+        hi: "Hi %{name},"
+        body_html: "You've been invited to <strong>Ta3alam</strong> as a <strong>%{role}</strong>."
+        body_text: "You've been invited to Ta3alam as a %{role}."
+        instructions: "To get started, set your password using the link below. This link is valid for 15 minutes."
+        link_text: "Set your password"
+        footer: "If you weren't expecting this invitation, you can safely ignore this email."
+  assignments:
+    attributes:
+      title: "Title"
+      deadline: "Deadline"
+      max_score: "Max Score"
+      weight: "Weight"
+      max_attempts: "Max Attempts"
+      can_submit_after_deadline: "Can submit after deadline"
+      accept_content_types: "Accepted File Types"
+    index:
+      title: "Assignments"
+      new: "New Assignment"
+      submission_count: "%{count} submissions"
+      no_assignments: "No Assignments"
+    show:
+      title: "Assignment Details"
+    edit:
+      title: "Edit Assignment"
+    new:
+      title: "New Assignment"
+    status:
+      due: "Due: %{date}"
+      no_deadline: "No deadline"
+  submissions:
+    attributes:
+      content: "Answer"
+      files: "Files"
+      grade: "Grade"
+      feedback: "Feedback"
+      status: "Status"
+      submitted_at: "Submitted at"
+      submission_file: "File (Upload or Record Audio)"
+      notes: "Notes"
+      graded_submission_file: "Graded File"
+    index:
+      title: "Submissions"
+      no_submissions: "No submissions yet"
+      submissions_for: "Submissions for %{title}"
+    show:
+      title: "Submission Details"
+    grade_view:
+      title: "Grade Submission"
+      submit: "Submit Grade"
+    new:
+      title: "New Submission"
+      recorder:
+        start: "Start Recording"
+        stop: "Stop Recording"
+        rerecord: "Re-record"
+        recording: "Recording..."
+        attached: "Recording attached."
+        error: "Microphone access denied or not available."
+    status:
+      pending: "Pending"
+      graded: "Graded"
+      not_graded: "Not graded"
+  teachers:
+    attributes:
+      user: "Teacher"
+    index:
+      title: "Teachers"
+      new: "Add Teacher"
+      no_teachers: "No teachers"
+    show:
+      title: "Teacher Details"
+    new:
+      title: "Add Teacher to Class"
+    labels:
+      select_teacher: "Select a teacher"
+  students:
+    attributes:
+      user: "Student"
+    index:
+      title: "Students"
+      new: "Add Student"
+      no_students: "No students"
+    show:
+      title: "Student Details"
+    new:
+      title: "Add Student to Class"
+      submit: "Add Student"
+    labels:
+      select_student: "Select a student"
+  klasses:
+    attributes:
+      code: "Code"
+    index:
+      title: "Classes"
+      new: "New Class"
+      class_label: "Class %{code}"
+    show:
+      title: "Class Details"
+    edit:
+      title: "Edit Class"
+    new:
+      title: "New Class"
+  courses:
+    attributes:
+      name: "Name"
+      number: "Number"
+      description: "Description"
+    index:
+      title: "Courses"
+      new: "New Course"
+    show:
+      title: "Course Details"
+    edit:
+      title: "Edit Course"
+    new:
+      title: "New Course"
+    announcements:
+      notify:
+        subject: "[%{course} - %{code}] New Announcement"
+        hi: "Hi %{name},"
+        body: "There's a new announcement in <strong>%{course} — %{code}</strong> from <strong>%{author}</strong>:"
+        body_text: "There's a new announcement in %{course} — %{code} from %{author}"
+  grades:
+    index:
+      title: "Grades"
+      no_grades: "No grades available"
+  contents:
+    attributes:
+      title: "Title"
+      body: "Content"
+      file: "Attachment"
+    index:
+      title: "Course Materials"
+      new: "New Content"
+      no_contents: "No content available"
+      module_general: "General"
+    show:
+      title: "Content Details"
+    edit:
+      title: "Edit Content"
+    new:
+      title: "New Content"
+  announcements:
+    attributes:
+      content: "Message"
+    index:
+      title: "Announcements"
+      new: "New Announcement"
+      no_announcements: "No announcements"
+    show:
+      title: "Announcement Details"
+    edit:
+      title: "Edit Announcement"
+    new:
+      title: "New Announcement"

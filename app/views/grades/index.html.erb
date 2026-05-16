@@ -7,12 +7,12 @@
         <%= tag.span "x#{grade.assignment.weight}", class: 'badge badge-lg badge-secondary badge-soft' %>
         <%= tag.div class: 'divider mt-0' if i < @grades.length-1 %>
 
-        <%= btn_link [ @klass, grade ], "Details", icon: :subject, classes: "btn-sm" %>
+        <%= btn_link [ @klass, grade ], t("shared.buttons.details"), icon: :subject, classes: "btn-sm" %>
       </li>
 
       <%= tag.div class: 'divider mt-0' if i < @grades.length-1 %>
     <% end %>
   </ul>
 <% else %>
-  <span class="opacity-80">No grades</span>
+  <span class="opacity-80"><%= t("grades.index.no_grades") %></span>
 <% end %>

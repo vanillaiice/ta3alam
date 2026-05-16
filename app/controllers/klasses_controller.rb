@@ -7,10 +7,7 @@ class KlassesController < ApplicationController
   def index
     @klasses = policy_scope(Klass)
 
-    if @course
-      @klasses = @klasses.joins(:course)
-        .where(course: @course)
-    end
+    @klasses = @klasses.where(course: @course) if @course
 
     @klasses = @klasses.search(params[:q]) if params[:q].present?
     @klasses = @klasses.page(params[:page])
@@ -53,7 +50,7 @@ class KlassesController < ApplicationController
     authorize @klass
     course = @klass.course
     @klass.destroy
-    redirect_to [ @klass.course, :klasses ], alert: "class deleted"
+    redirect_to [ course, :klasses ], alert: "class deleted"
   end
 
   private

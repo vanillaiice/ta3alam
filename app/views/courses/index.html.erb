@@ -16,14 +16,14 @@
 
       <div class="flex justify-between mt-2">
         <section class="flex gap-1">
-          <%= link_to "Classes", [ course, :klasses ], class: 'btn btn-sm btn-neutral' %>
-          <%= btn_link course, "Details", icon: :subject, classes: "btn btn-sm" %>
+          <%= link_to t("shared.buttons.classes"), [ course, :klasses ], class: 'btn btn-sm btn-neutral' %>
+          <%= btn_link course, t("shared.buttons.details"), icon: :subject, classes: "btn btn-sm" %>
         </section>
 
         <section class="flex gap-1">
           <%= btn_link [ :edit, course], nil, icon: :edit, outlined: true, classes: 'btn-sm' if policy(course).edit? %>
           <% if policy(course).destroy? %>
-            <%= button_to course, method: :delete, data: { turbo_confirm: "Are you sure?" }, class: 'btn btn-error btn-sm' do %>
+            <%= button_to course, method: :delete, data: { turbo_confirm: t("shared.confirm_delete") }, class: 'btn btn-error btn-sm' do %>
               <%= mi "delete", outlined: true %>
             <% end %>
           <% end %>

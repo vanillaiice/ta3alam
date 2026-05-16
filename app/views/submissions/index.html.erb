@@ -1,7 +1,7 @@
-<%= tag.p "Submissions for #{@assignment.title}", class: 'text-2xl font-semibold text-secondary' %>
+<%= tag.p t("submissions.index.submissions_for", title: @assignment.title), class: 'text-2xl font-semibold text-secondary' %>
 <%= @assignment.description if @assignment.description? %>
-<%= tag.div "deadline: #{l(@assignment.deadline, format: :long)}", class: 'badge badge-warning' %>
-<%= tag.div "uploaded: #{l(@assignment.created_at, format: :long)}", class: 'badge badge-secondary badge-soft' %>
+<%= tag.div "#{t("assignments.attributes.deadline")}: #{l(@assignment.deadline, format: :long)}", class: 'badge badge-warning' %>
+<%= tag.div "#{t("shared.labels.uploaded")}: #{l(@assignment.created_at, format: :long)}", class: 'badge badge-secondary badge-soft' %>
 
 <div class="divider"></div>
 
@@ -18,7 +18,7 @@
           <%= tag.p "#{submission.score}/#{submission.assignment.max_score}", class: 'badge badge-secondary badge-lg' %>
           <br>
         <% else %>
-          <%= tag.p "Not graded", class: 'opacity-80 italic' %>
+          <%= tag.p t("submissions.status.not_graded"), class: 'opacity-80 italic' %>
         <% end %>
 
         <%= submission.notes if submission.notes? %>
@@ -31,14 +31,14 @@
 
         <div class="flex justify-between mt-2">
           <section class="flex gap-1">
-            <%= link_to "Grade", [ :grade, @klass, submission ], class: 'btn btn-sm btn-accent' if policy(submission).grade? %>
-            <%= btn_link [ @klass, submission ] , "Details", icon: :subject, classes: 'btn-sm' %>
+            <%= link_to t("shared.buttons.grade"), [ :grade, @klass, submission ], class: 'btn btn-sm btn-accent' if policy(submission).grade? %>
+            <%= btn_link [ @klass, submission ] , t("shared.buttons.details"), icon: :subject, classes: 'btn-sm' %>
           </section>
 
           <section class="flex gap-1">
             <%= btn_link [ :edit, @klass, submission ], nil, icon: :edit, classes: 'btn-sm' if policy(submission).edit? %>
             <% if policy(submission).destroy? %>
-              <%= button_to [ @klass, submission ], method: :delete, data: { turbo_confirm: "Are you sure?" }, class: 'btn btn-error btn-sm' do %>
+              <%= button_to [ @klass, submission ], method: :delete, data: { turbo_confirm: t("shared.confirm_delete") }, class: 'btn btn-error btn-sm' do %>
                 <%= mi "delete", outlined: true %>
               <% end %>
             <% end %>
@@ -53,5 +53,5 @@
     <%= paginate @submissions, window: 2, params: request.query_parameters %>
   </div>
 <% else %>
-  <span class="flex justify-center opacity-80">No Submissions</span>
+  <span class="flex justify-center opacity-80"><%= t("submissions.index.no_submissions") %></span>
 <% end %>

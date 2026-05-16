@@ -4,33 +4,24 @@
 </div>
 
 <%= tag.h1 "#{@course.name} #{@course.number}", class: 'text-xl font-semibold mt-4' if @course.present? %>
-<%= @course.description if @course.description if @course.present? %>
+<%= @course.description if @course.present? && @course.description.present? %>
 
 <div class="divider"></div>
 
 <div id="klasses">
-  <% if @course.present? %>
-    <%= render "shared/display_items", items: @klasses do |klass| %>
-      <div class="flex flex-col">
-        <%= link_to "Class #{klass.code}", [ klass ], class: 'link link-hover text-xl' %>
-        <div>
-          <% klass.teachers.each do |teacher| %>
-            <%= tag.span teacher.user.name, class: [ "badge badge-secondary", teacher.user_id == @user.id ? "badge" : "badge-soft" ] %>
-          <% end %>
-        </div>
-      </div>
-    <% end %>
-  <% else %>
-    <%= render "shared/display_items", items: @klasses do |klass| %>
-      <div class="flex flex-col">
+  <%= render "shared/display_items", items: @klasses do |klass| %>
+    <div class="flex flex-col">
+      <% if @course.present? %>
+        <%= link_to t("klasses.index.class_label", code: klass.code), [ klass ], class: 'link link-hover text-xl' %>
+      <% else %>
         <%= link_to "#{klass.course.name} #{klass.course.number} - #{klass.code}", [ klass ], class: 'link link-hover text-xl' %>
-        <%= klass.course.description if klass.course.description %>
-        <div>
-          <% klass.teachers.each do |teacher| %>
-            <%= tag.span teacher.user.name, class: [ "badge badge-secondary", teacher.user_id == @user.id ? "badge" : "badge-soft" ] %>
-          <% end %>
-        </div>
+        <%= klass.course.description if klass.course.description? %>
+      <% end %>
+      <div>
+        <% klass.teachers.each do |teacher| %>
+          <%= tag.span teacher.user.name, class: [ "badge badge-secondary", teacher.user_id == @user.id ? "badge" : "badge-soft" ] %>
+        <% end %>
       </div>
-    <% end %>
+    </div>
   <% end %>
 </div>

@@ -4,7 +4,9 @@ class AnnouncementsMailer < ApplicationMailer
     @announcement = announcement
     @klass = announcement.klass
 
-    mail subject: "[#{@klass.course.number} - #{@klass.code}] New Announcement",
-         to: user.email_address
+    I18n.with_locale(user.locale) do
+      mail subject: t("mailers.announcements.notify.subject", course: @klass.course.number, code: @klass.code),
+           to: user.email_address
+    end
   end
 end

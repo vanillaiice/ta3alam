@@ -1,4 +1,4 @@
-<% grouped = @contents.group_by { |c| c.module_name.presence || "General" } %>
+<% grouped = @contents.group_by { |c| c.module_name.presence || t("contents.index.module_general") } %>
 
 <% if grouped.any? %>
   <% grouped.each do |module_name, contents| %>
@@ -22,13 +22,13 @@
                   <%= mi "download" %>
                 <% end %>
               <% end %>
-              <%= btn_link [ @klass, content ], "Details", icon: :subject, classes: 'btn btn-sm' %>
+              <%= btn_link [ @klass, content ], t("shared.buttons.details"), icon: :subject, classes: 'btn btn-sm' %>
             </section>
 
             <section class="flex gap-1">
               <%= btn_link [ :edit, @klass, content ], nil, icon: :edit, classes: 'btn btn-sm' if policy(content).edit? %>
               <% if policy(content).destroy? %>
-                <%= button_to [ @klass, content ], method: :delete, data: { turbo_confirm: "Are you sure?" }, class: 'btn btn-error btn-sm' do %>
+                <%= button_to [ @klass, content ], method: :delete, data: { turbo_confirm: t("shared.confirm_delete") }, class: 'btn btn-error btn-sm' do %>
                   <%= mi "delete", outlined: true %>
                 <% end %>
               <% end %>
@@ -41,5 +41,5 @@
     </div>
   <% end %>
 <% else %>
-  <span class="flex justify-center opacity-80">No Content</span>
+  <span class="flex justify-center opacity-80"><%= t("contents.index.no_contents") %></span>
 <% end %>

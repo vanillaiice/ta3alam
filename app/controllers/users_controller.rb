@@ -3,6 +3,8 @@ class UsersController < ApplicationController
 
   def index
     @users = policy_scope(User)
+    @users = @users.search(params[:q]) if params[:q].present?
+    @users = @users.page(params[:page]).per(10)
   end
 
   def new
@@ -13,7 +15,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params.merge(password: SecureRandom.hex(16)))
     if @user.save
       UsersMailer.invite(@user).deliver_later
-      redirect_to users_path, notice: "#{@user.name} has been invited. A password setup email has been sent."
+      redirect_to users_path, notice: t("flash.invited", name: @user.name)
     else
       render :new, status: :unprocessable_content
     end

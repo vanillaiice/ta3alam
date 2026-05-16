@@ -2,6 +2,11 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   static targets = ["recordButton", "stopButton", "audioPlayback", "fileInput", "status"]
+  static values = {
+    recordingText: { type: String, default: "Recording..." },
+    attachedText: { type: String, default: "Recording attached." },
+    errorText: { type: String, default: "Microphone access denied or not available." }
+  }
 
   connect() {
     this.mediaRecorder = null
@@ -40,12 +45,12 @@ export default class extends Controller {
       
       this.recordButtonTarget.classList.add('hidden')
       this.stopButtonTarget.classList.remove('hidden')
-      this.statusTarget.textContent = "Recording..."
+      this.statusTarget.textContent = this.recordingTextValue
       this.statusTarget.classList.add('text-error', 'animate-pulse')
       this.statusTarget.classList.remove('text-success')
     } catch (err) {
       console.error("Error accessing microphone:", err)
-      this.statusTarget.textContent = "Microphone access denied or not available."
+      this.statusTarget.textContent = this.errorTextValue
       this.statusTarget.classList.add('text-error')
     }
   }
@@ -59,7 +64,7 @@ export default class extends Controller {
     
     this.recordButtonTarget.classList.remove('hidden')
     this.stopButtonTarget.classList.add('hidden')
-    this.statusTarget.textContent = "Recording attached."
+    this.statusTarget.textContent = this.attachedTextValue
     this.statusTarget.classList.remove('text-error', 'animate-pulse')
     this.statusTarget.classList.add('text-success')
   }

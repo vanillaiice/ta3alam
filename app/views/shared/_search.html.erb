@@ -1,5 +1,5 @@
 <%= form_with url: url, method: :get, local: true, class: "flex gap-2 w-full" do %>
-  <%= search_field_tag :q, params[:q], placeholder: local_assigns[:placeholder] || "Search...", class: "input", autofocus: params[:q].present? %>
+  <%= search_field_tag :q, params[:q], placeholder: local_assigns[:placeholder] || t("shared.search.placeholder"), class: "input", autofocus: params[:q].present? %>
   <button class="btn" type="submit">
     <%= mi "search" %>
   </button>

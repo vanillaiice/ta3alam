@@ -15,9 +15,9 @@
       </li>
 
       <div class="flex justify-between gap-1 mt-2">
-          <%= btn_link [ @klass, teacher ], "Details", icon: :subject, classes: 'btn-sm' %>
+          <%= btn_link [ @klass, teacher ], t("shared.buttons.details"), icon: :subject, classes: 'btn-sm' %>
           <% if policy(teacher).destroy? %>
-            <%= button_to [ @klass, teacher ], method: :delete, data: { turbo_confirm: "Are you sure?" }, class: 'btn btn-error btn-sm' do %>
+            <%= button_to [ @klass, teacher ], method: :delete, data: { turbo_confirm: t("shared.confirm_delete") }, class: 'btn btn-error btn-sm' do %>
               <%= mi "delete", outlined: true %>
             <% end %>
           <% end %>
@@ -31,5 +31,5 @@
     <%= paginate @teachers, window: 2, params: request.query_parameters %>
   </div>
 <% else %>
-  <span class="opacity-80">No teachers</span>
+  <span class="opacity-80"><%= t("teachers.index.no_teachers") %></span>
 <% end %>

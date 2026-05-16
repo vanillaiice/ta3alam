@@ -7,7 +7,7 @@
       <div class="flex gap-1">
         <%= btn_link [ :edit, @klass ], nil, icon: :edit, classes: 'btn-xs' if policy(@klass).edit? %>
         <% if policy(@klass).destroy? %>
-          <%= button_to @klass, method: :delete, data: { turbo_confirm: "Are you sure?" }, class: 'btn btn-xs btn-error' do %>
+          <%= button_to @klass, method: :delete, data: { turbo_confirm: t("shared.confirm_delete") }, class: 'btn btn-xs btn-error' do %>
             <%= mi "delete", outlined: true %>
           <% end %>
         <% end %>
@@ -17,7 +17,7 @@
     <div class="divider m-0"></div>
 
     <div class="flex flex-col">
-      <%= tag.p "#{@klass.course.name} #{@klass.course.number} - Class #{@klass.code}", class: 'text-2xl font-semibold' %>
+      <%= tag.p "#{@klass.course.name} #{@klass.course.number} - #{t("klasses.index.class_label", code: @klass.code)}", class: 'text-2xl font-semibold' %>
       <%= @klass.course.description %>
     </div>
 
@@ -25,29 +25,29 @@
 
     <div class="flex gap-1 overflow-x-auto">
       <div class="join">
-        <%= link_to "Contents", [ @klass, :contents ], class: "btn join-item #{'btn-active' if controller_name == 'contents'}" %>
+        <%= link_to t("shared.buttons.contents"), [ @klass, :contents ], class: "btn join-item #{'btn-active' if controller_name == 'contents'}" %>
         <%= btn_link [ :new, @klass, :content ], nil, icon: :add, classes: "btn-square btn-neutral join-item" if policy(Content.new(klass: @klass)).new? %>
       </div>
 
       <div class="join">
-        <%= link_to "Assignments", [ @klass, :assignments ], class: "btn join-item #{'btn-active' if %w[assignments submissions].include?(controller_name)}" %>
+        <%= link_to t("shared.buttons.assignments"), [ @klass, :assignments ], class: "btn join-item #{'btn-active' if %w[assignments submissions].include?(controller_name)}" %>
         <%= btn_link [ :new, @klass, :assignment ], nil, icon: :add, classes: "btn-square btn-neutral join-item" if policy(Assignment.new(klass: @klass)).new? %>
       </div>
 
       <div class="join">
-        <%= link_to "Annoucements", [ @klass, :announcements ], class: "btn join-item #{'btn-active' if %w[announcements].include?(controller_name)}" %>
+        <%= link_to t("shared.buttons.announcements"), [ @klass, :announcements ], class: "btn join-item #{'btn-active' if %w[announcements].include?(controller_name)}" %>
         <%= btn_link [ :new, @klass, :announcement ], nil, icon: :add, classes: "btn-square btn-neutral join-item" if policy(Announcement.new(klass: @klass)).new? %>
       </div>
 
-      <%= link_to "Grades", [ @klass, :grades ], class: "btn join-item #{'btn-active' if %w[grades].include?(controller_name)}" if @user.student? %>
+      <%= link_to t("shared.buttons.grades"), [ @klass, :grades ], class: "btn join-item #{'btn-active' if %w[grades].include?(controller_name)}" if @user.student? %>
 
       <div class="join">
-        <%= link_to "Teachers", [ @klass, :teachers ], class: "btn join-item #{'btn-active' if controller_name == 'teachers'}" %>
+        <%= link_to t("shared.buttons.teachers"), [ @klass, :teachers ], class: "btn join-item #{'btn-active' if controller_name == 'teachers'}" %>
         <%= btn_link [ :new, @klass, :teacher ], nil, icon: :add, classes: "btn-square btn-neutral join-item" if policy(Teacher).new? %>
       </div>
 
       <div class="join">
-        <%= link_to "Students", [ @klass, :students ], class: "btn join-item #{'btn-active' if controller_name == 'students'}" %>
+        <%= link_to t("shared.buttons.students"), [ @klass, :students ], class: "btn join-item #{'btn-active' if controller_name == 'students'}" %>
         <%= btn_link [ :new, @klass, :student ], nil, icon: :add, classes: "btn-square btn-neutral join-item" if policy(Student).new? %>
       </div>
     </div>

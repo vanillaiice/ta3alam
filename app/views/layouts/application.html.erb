@@ -30,33 +30,86 @@
         </div>
 
         <div class="flex-none">
-          <ul class="menu menu-horizontal px-1 items-center">
+          <!-- Desktop Menu -->
+          <ul class="menu menu-horizontal px-1 items-center hidden md:flex">
             <% if authenticated? %>
               <li>
-                <%= link_to "Dashboard", d_root_url %>
+                <%= link_to t("navbar.dashboard"), d_root_url %>
               </li>
 
               <% if policy(User).index? %>
                 <li>
-                  <%= link_to "Users", users_url %>
+                  <%= link_to t("navbar.users"), users_url %>
                 </li>
               <% end %>
 
+              <li class="dropdown dropdown-end">
+                <div tabindex="0" role="button" class="flex items-center gap-1 m-1">
+                  <i class="material-icons-outlined">language</i>
+                  <%= I18n.locale.upcase %>
+                </div>
+                <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-32 p-2 shadow">
+                  <li><%= link_to "EN", update_locale_path(locale: :en), data: { turbo_method: :patch } %></li>
+                  <li><%= link_to "FR", update_locale_path(locale: :fr), data: { turbo_method: :patch } %></li>
+                </ul>
+              </li>
+
               <li>
                 <%= button_to session_path, method: :delete, class: "flex items-center gap-1 hover:cursor-pointer" do %>
-                  Logout
+                  <%= t("navbar.logout") %>
                   <i class="material-icons-outlined">logout</i>
                 <% end %>
               </li>
             <% else %>
               <li>
                 <%= tag.a href: new_session_path do %>
-                  Login
+                  <%= t("navbar.login") %>
                   <i class="material-icons-outlined">login</i>
                 <% end %>
               </li>
             <% end %>
           </ul>
+
+          <!-- Mobile Menu -->
+          <div class="dropdown dropdown-end md:hidden">
+            <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
+              <i class="material-icons-outlined">menu</i>
+            </div>
+            <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+              <% if authenticated? %>
+                <li><%= link_to t("navbar.dashboard"), d_root_url %></li>
+                <% if policy(User).index? %>
+                  <li><%= link_to t("navbar.users"), users_url %></li>
+                <% end %>
+                <li>
+                  <details>
+                    <summary>
+                      <i class="material-icons-outlined align-middle">language</i>
+                      <%= t("navbar.language") %> (<%= I18n.locale.upcase %>)
+                    </summary>
+                    <ul class="p-2 bg-base-100">
+                      <li><%= link_to "English", update_locale_path(locale: :en), data: { turbo_method: :patch } %></li>
+                      <li><%= link_to "Français", update_locale_path(locale: :fr), data: { turbo_method: :patch } %></li>
+                    </ul>
+                  </details>
+                </li>
+                <div class="divider my-1"></div>
+                <li>
+                  <%= button_to session_path, method: :delete, class: "flex justify-between w-full text-error" do %>
+                    <span><%= t("navbar.logout") %></span>
+                    <i class="material-icons-outlined">logout</i>
+                  <% end %>
+                </li>
+              <% else %>
+                <li>
+                  <%= link_to new_session_path, class: "flex justify-between" do %>
+                    <span><%= t("navbar.login") %></span>
+                    <i class="material-icons-outlined">login</i>
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
         </div>
       </div>
 

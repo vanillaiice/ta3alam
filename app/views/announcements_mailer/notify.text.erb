@@ -1,5 +1,5 @@
-Hi <%= @user.name %>,
+<%= t("mailers.announcements.notify.hi", name: @user.name) %>
 
-There's a new announcement in <%= @klass.course.number %> — <%= @klass.code %> from <%= @announcement.user.name %>:
+<%= t("mailers.announcements.notify.body_text", course: @klass.course.number, code: @klass.code, author: @announcement.user.name) %>:
 
 <%= @announcement.content.to_plain_text %>
