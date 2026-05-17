@@ -33,6 +33,7 @@ courses = 5.times.map do |i|
   courseName = Faker::Educator.unique.course_name
   name, number = courseName.rpartition(" ").values_at(0, 2)
   number = number.to_i
+  name = "#{name}"
 
   Course.create!(
     {
@@ -44,6 +45,8 @@ courses = 5.times.map do |i|
     }
   )
 end
+teacher_count = 0
+student_count = 0
 
 courses.each_with_index do |course, i|
   klasses = 3.times.map do
@@ -55,12 +58,14 @@ courses.each_with_index do |course, i|
   Klass.insert_all!(klasses)
 
   Klass.where(course_id: course.id).each_with_index do |klass, j|
-    teachers = rand(2..5).times.map do |k|
+    teachers = rand(5..10).times.map do |k|
+      email = "teacher#{teacher_count}@email.com"
+      teacher_count += 1
       User.create!(
         {
           role: :teacher,
           name: Faker::Name.name,
-          email_address: "teacher#{i}#{j}#{k}@email.com",
+          email_address: email,
           password: "password",
           password_confirmation: "password"
         }
@@ -80,10 +85,12 @@ courses.each_with_index do |course, i|
     end
 
     students = rand(5..10).times.map do |k|
+      email = "student#{student_count}@email.com"
+      student_count += 1
       User.create!(
         role: :student,
         name: Faker::Name.name,
-        email_address: "student#{i}#{j}#{k}@email.com",
+        email_address: email,
         password: "password",
         password_confirmation: "password",
       )
